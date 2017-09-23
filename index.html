@@ -2,69 +2,171 @@
 <html>
 <head>
   <title>Aah le W</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Des réponses inattendues a la question essentielle du travail et le plein emploi.">
 
   <link rel="icon" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700|PT+Sans:700|PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700|PT+Sans:700,400|PT+Serif:400,400i" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet"/>
 
   <style type="text/css">
 
-	body {
-	    background: #fff;
-	    padding: 225px 0;
-	}
+  body {
+      background: #fff;
+      padding: 5em 0 0 0;
+  }
 
-	.container {
-		margin: 0 auto;
-    	padding: 0 20px;
-    	width: 205px;
-	}
+  .container {
+    margin: 0 auto;
+      padding: 0 20px;
+      width: 205px;
+      color: #222;
+      font: 400 14px/18px 'pt serif';
+  }
 
-	.container h1 {
-	    color: #222;
-	    font: 700 24px/24px 'pt sans narrow';
-	    margin: 0;
-	    text-align: center;
-	    text-transform: uppercase;
-	}
+  .container h1 {
+      color: #222;
+      font: 700 24px/24px 'pt sans narrow';
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+  }
 
-	.container h2 {
-	    color: #222;
-	    font: 700 16px/20px 'pt sans';
-	    margin: 0;
-	    text-align: center;
-	}	
+  .container h2, .container menus {
+      color: #222;
+      font: 700 16px/20px 'pt sans';
+      margin: 0;
+      text-align: center;
+  }  
+
+  .container hr.bottom {
+      margin: 10px auto;
+  }
+
+  .container hr {
+      background: #333;
+      border: 0;
+      height: 2px;
+      margin: 12px auto 8px;
+      width: 60px;
+  }
+
+  .container p {
+      text-align: justify;
+      text-indent: 14px;
+      margin-top: .5em;
+  }
+  .container p.noindent {
+      text-indent: 0;
+  }  
+  .container i {
+    font-style: italic;
+  }
+  .container  ul.para {
+    list-style-type: none;
+  }
+  .container  ul.para li {
+    padding: 0 0 0.3em 14px;
+  }
+
+  .container  ul.para li:before {
+      content: "\2014\a0";
+    position: absolute;
+    margin-left: -1.1em;
+  }
+
+  .container nav {
+      position: absolute;
+      right: 0;      
+      margin: 5em -3.3em 0 0;
+      overflow: hidden;
+      -ms-transform: rotate(90deg); /* IE 9 */
+      -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+      transform: rotate(90deg);
 
 
-	.container hr.bottom {
-	    margin: 10px auto;
-	}
+  }
+    .container nav ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-left: -1px;
+    }
+    .container nav li {
+        flex-grow: 1;
+        flex-basis: auto;
+        margin: .1em 0;
+        padding: 0 .1em;
+        text-align: center;
+        border-left: 1px solid #ccc;
+        background-color: #fff;
+    }
+    
+    .container nav a {
+      text-decoration: none;
+      padding: .2em .1em;
+        color: #222;
+        font: 700 12px/16px 'pt sans';
+        text-decoration: none;
+    }  
 
-	.container hr {
-	    background: #333;
-	    border: 0;
-	    height: 2px;
-	    margin: 12px auto 8px;
-	    width: 60px;
-	}
+    .container nav a:hover {
+      text-decoration: none;
+      color: #777;
+    }
 
-	.container p {
-	    color: #222;
-	    font: 400 14px/18px 'pt serif';
-	    text-align: justify;
-	    text-indent: 14px;
-	}	
+    .container .deadlink {
+      color:  #d2d2d2;
+    }
+
+  .git {
+    position: fixed;
+    bottom: 1em;
+    right: 2em;
+    height: 32px;
+    width: 32px;
+    margin: 0;
+    padding: 0;    
+  }
+  .git svg:hover path{
+    fill: #777;
+  }
 
   </style>
-
 </head>
 <body>
 
   <div class="container">
-  	<h1>Travaillerai-je?</h1>
-  	<h2>Oui sans doute.</h2>
-  	<hr class="bottom">
-  	<p>Un animal qui broute ne travaille-t-il pas? Une meute qui chasse ne socialise-elle pas? Le nid n'est il pas ce que l'oseau construit?</p>
-
+    <nav>
+      <ul>
+        <li><a href="http://quand.travaillerai.je" title="Oracle, quand travaillerai-je?">quand</a></li>
+        <li><a href="http://pourquoi.travaillerai.je" title="Oracle, pourquoi travaillerai-je?">pourquoi</a></li>
+        <li><a href="" title="pas encore" class="deadlink">pour qui</a></li>
+        <li><a href="" title="pas encore" class="deadlink">avec qui</a></li>    
+      </ul>
+    </nav>
+    <h1>Travaillerai-je?</h1>
+    <h2>non peut-être.</h2>
+    <hr class="bottom">
+    <p>Un animal qui broute ne travaille-t-il pas? Une meute qui chasse ne socialise-elle pas? Le nid n'est il pas ce que l'oseau construit?</p>
+    <p>Cela dit, <i>"travailler"</i> ne va pas de soi ; c’est une opération complexe a mener.</p>
+    <p class="noindent">Elle implique:</p>
+    <p>
+      <ul class="para">
+        <li>que l’on prenne conscience de la chose à faire,</li>
+        <li>que l’on trouve en soi une envie suffisante de la faire,</li>
+        <li>que l’on décide de traduire cette envie en actes,</li>
+        <li>que l’on se représente les opérations à réaliser pour y parvenir,</li>
+        <li>que l’on ait, à la fois, la capacité technique de les réaliser et la capacité psychologique de soutenir l’effort nécessaire à cette réalisation.</li>
+      </ul>
+    </p>
+    <p>En deux mots, c'est tout un programme que de travailler! </p>
+    <p>Heureusement que l'Oracle est la pour repondre aux questions essentielles le concernant.</p>
+  </div>
+  <div class="git"><a href="https://github.com/AlfredJKwack/travaillerai.je" title="Participez au fun sur GitHub">
+    <svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>
+    </a>
   </div>
 
 
