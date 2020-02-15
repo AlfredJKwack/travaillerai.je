@@ -7,8 +7,8 @@ Si vous désirez participer soumettez un PR soit ici, soit sur la repo propre a 
 - [travaillerai.je](http://travaillerai.je)
 - [quand.travaillerai.je](http://quand.travaillerai.je)
 - [pourquoi.travaillerai.je](http://pourquoi.travaillerai.je)
+- [comment.travaillerai.je](http://comment.travaillerai.je)
 
 ## Questions non existantes
-- comment.travaillerai.je
 - avec.qui.travaillerai.je
 - pour.qui.travaillerai.je
