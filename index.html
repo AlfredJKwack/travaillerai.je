@@ -26,130 +26,468 @@
     var myColor = COLORS[Math.floor(Math.random()*COLORS.length)];
   </script>
 
+  <script type="text/javascript">
+  /***** Gooey Hover Menu *****/
+  /* Credits go to Michael Leonard for his concept work on the menu. */
+  /* Source: https://codepen.io/mikel301292/pen/dMYRYZ?editors=1100 */
+
+  window.addEventListener("load", (event) => {
+      var height = window.innerHeight,
+      x= 0, y= height/2,
+      curveX = 10,
+      curveY = 0,
+      targetX = 0,
+      xitteration = 0,
+      yitteration = 0,
+      menuExpanded = false;
+      
+      var blob = document.querySelector('#blob'),
+      blobPath = document.querySelector('#blob-path'),
+      hamburger = document.querySelector('.hamburger');
+
+      document.addEventListener('mousemove', (e) => {
+        x = e.clientX;
+        y = e.clientY;
+      });
+
+      document.querySelector('.hamburger, .menu-inner').addEventListener('mouseenter', (e) => {
+        menuExpanded = true;
+      });
+
+      document.querySelector('.menu-inner').addEventListener('mouseleave', (e) => {
+        menuExpanded = false;
+      });
+
+      function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
+        return changeInValue * (-Math.pow(2, -10 * currentIteration / totalIterations) + 1) + startValue;
+      }
+
+      var hoverZone = 150;
+      var expandAmount = 20;
+      
+      function svgCurve() {
+        if ((curveX > x-1) && (curveX < x+1)) {
+          xitteration = 0;
+        } else {
+          if (menuExpanded) {
+            targetX = 0;
+          } else {
+            xitteration = 0;
+            if (x > hoverZone) {
+              targetX = 0;
+            } else {
+              targetX = -(((60+expandAmount)/100)*(x-hoverZone));
+            }			
+          }
+          xitteration++;
+        }
+
+        if ((curveY > y-1) && (curveY < y+1)) {
+          yitteration = 0;
+        } else {
+          yitteration = 0;
+          yitteration++;	
+        }
+
+        curveX = easeOutExpo(xitteration, curveX, targetX-curveX, 100);
+        curveY = easeOutExpo(yitteration, curveY, y-curveY, 100);
+
+        var anchorDistance = 200;
+        var curviness = anchorDistance - 40;
+
+        var newCurve2 = "M60,"+height+"H0V0h60v"+(curveY-anchorDistance)+"c0,"+curviness+","+curveX+","+curviness+","+curveX+","+anchorDistance+"S60,"+(curveY)+",60,"+(curveY+(anchorDistance*2))+"V"+height+"z";
+
+        blobPath.setAttribute('d', newCurve2);
+
+        blob.style.setProperty('width', curveX+60+'px');
+
+        hamburger.style.setProperty('transform', 'translate('+curveX+'px, '+curveY+'px)');
+        
+        window.requestAnimationFrame(svgCurve);
+      }
+
+      window.requestAnimationFrame(svgCurve);
+      
+    });    
+  </script>
+
   <style type="text/css">
 
   body {
-      background: #fff;
-      padding: 5em 0 0 0;
+    font: 400 16px/21px 'pt sans narrow';
   }
 
-  .container {
-    margin: 0 auto;
-      padding: 0 20px;
-      width: 205px;
-      color: #222;
-      font: 400 14px/18px 'pt serif';
+  h1, h2 {
+    color: #222;
+    font: 700 24px/24px 'pt sans narrow';
+  }
+  h1 {
+    text-transform: uppercase;
+  }
+ 
+  /***** General layout *****/
+  .container{
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: 60px 200px 1fr;
+    grid-template-rows: 3em auto 2em;
+  }
+  .header{
+    grid-column: 2 / -1; 
+    display: grid;
+    place-items: center;
+    text-align:center;    
+  } 
+  .menu{
+    z-index: 10;
+    grid-column: 1 / 2;
+    grid-row: 1 / -2;
+  }
+  .content{
+    grid-column: 2 / -1;
+    background-color: red;
+    padding: 1em;
+  }
+  .footer{
+    grid-column: 2 / -1; 
+    background-color: blue;
   }
 
-  .container h1 {
-      color: #222;
-      font: 700 24px/24px 'pt sans narrow';
-      margin: 0;
-      text-align: center;
-      text-transform: uppercase;
-  }
+  /***** Gooey Hover Menu *****/
+  /* Credits go to Michael Leonard for his concept work */
+  /* Source: https://codepen.io/mikel301292/pen/dMYRYZ?editors=1100 */
 
-  .container h2, .container menus {
-      color: #222;
-      font: 700 16px/20px 'pt sans';
-      margin: 0;
-      text-align: center;
-  }  
-
-  .container hr.bottom {
-      margin: 10px auto;
-  }
-
-  .container hr {
-      background: #333;
-      border: 0;
-      height: 2px;
-      margin: 12px auto 8px;
-      width: 60px;
-  }
-
-  .container p {
-      text-align: justify;
-      text-indent: 14px;
-      margin-top: .5em;
-  }
-  .container p.noindent {
-      text-indent: 0;
-  }  
-  .container i {
-    font-style: italic;
-  }
-  .container  ul.para {
-    list-style-type: none;
-  }
-  .container  ul.para li {
-    padding: 0 0 0.3em 14px;
-  }
-
-  .container  ul.para li:before {
-      content: "\2014\a0";
-    position: absolute;
-    margin-left: -1.1em;
-  }
-
-  .container nav {
-    position: absolute;
-    right: 0;
-    margin: 100px -101px 0 0;
-    overflow: hidden;
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-  }
-    .container nav ul {
-      display: flex;
-      margin-left: -1px;
-    }
-    .container nav li {
-      border-left: 1px solid #fff;
-      padding: 12px;
-    }
-    
-    .container nav a {
-      text-decoration: none;
-      padding: .2em .1em;
-      color: #fff;
-      font: 700 14px/16px 'pt sans';
-      text-decoration: none;
-    }  
-
-    .container nav a:hover {
-      text-decoration: none;
-      color: #fafafa;
-    }
-
-    .container .deadlink {
-      color:  #fafafa;
-    }
-
-  .navbg {
+  .menu {
+    height: 100%;
     position: fixed;
-    height: 100vh;
-    width: 32px;
+    background-color: #FED057;
+    width: 200px;
+    transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translateX(-100%);
+    left: 60px;
+  }
+  .menu:hover {
+    transform: translateX(0%);
+    left: 0px;
+  }
+  .menu-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .menu ul {
+    padding: 0;
+    list-style: none;
+    width: 80%;
+    margin-left: 10%;
+    position: absolute;
+    top: 10px;
+  }
+  .menu ul li {
+    color: #fff;
+    font-family: sans-serif;
+    padding: 20px 0;
+  }    
+
+  #blob {
+    top: 0;
     z-index: -1;
-    background: #e6001f;
-    right: 2em;
+    right: 60px;
+    transform: translateX(100%);
+    height: 100%;
+    position: absolute;
+  }
+
+  #blob-path {
+    height: 100%;
+    fill:  #FED057;
+  }
+
+  .hamburger {
+    right: 20px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;	
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    position: absolute;
+  }
+
+  .hamburger .line:nth-child(2) {
+    top: 50%;
+    margin-top: -2px;
+  }
+
+  .hamburger .line:nth-child(3) {
     bottom: 0;
   }
-  .git {
-    position: fixed;
-    bottom: 1em;
-    right: 2em;
-    height: 32px;
-    width: 32px;
-    margin: 0;
-    padding: 0;    
+ 
+  /***** Magic 8 ball CSS Code *****/
+  /* Credits go to Mark Robbins' amazing Magic 8 Ball code */
+  /* Source: https://codepen.io/M_J_Robbins/pen/mdyqqNW?editors=1100*/
+
+  .oracle{
+    font-size:1.6vmin;
+    display: grid;
+    place-items: center;
+    text-align:center;
   }
-  .git svg path{
-    fill: #fff;
-  }  
-  .git svg:hover path{
-    fill: #777;
+
+  .oracle *{
+    transform-style: preserve-3d;
+  }
+
+  .ball{
+    height:50em;
+    width:50em;
+    background:#171717;
+    border-radius:50%;
+    display: grid;
+    place-items: center;
+    perspective: 100em;
+    overflow:hidden;
+    transform:scale(.8);
+    transition:transform 1s;
+    -webkit-box-reflect: below 2em linear-gradient(transparent 40%, white);
+    box-shadow: rgba(0, 0, 0, 0.45) 0 20em 8em -2em;
+  }
+  .ball::after {
+    content: '';
+    display: block;
+    width: 50em;
+    height: 50em;
+    z-index: 2;
+    position: absolute;
+    background-image: radial-gradient(farthest-side at 60% 30%,rgba(255,255,255,.2),transparent,rgba(0,0,0,.7));
+  }
+  .roll{
+    transform: rotateX(60deg);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    animation:4s roll infinite linear;
+    will-change:transform;
+  }
+  .eight3D{
+    position:absolute;
+    transform:translateZ(24em);
+  }
+  .eight{
+    height:15em;
+    width:15em;
+    background:#ddd;
+    border-radius:50%;
+    border:1em double black;
+    text-align:center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* for safari */
+  }
+  .eight b{
+    font:15em/1 arial;
+  }
+  .magic3D{
+    position:absolute;
+    transform:translateZ(-24em);
+  }
+  .magic{
+    transform:rotateX(180deg);
+    height:15em;
+    width:15em;
+    background:  radial-gradient(#000, #060823);
+    border-radius:50%;
+    border:1em solid #222;
+    box-shadow: -.1em -.1em  #666, inset -.2em -.2em .1em #666;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* for safari */
+    display: grid;
+    place-items: center;
+  }
+  .magic .answer{
+    display: flow-root;
+    padding-top:1em;
+    width:10em;
+    height:8em;
+    background:#3b27ab;
+    clip-path: polygon(50% 100%, 0 0, 100% 0); 
+    -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0); /* for safari */
+    box-shadow:inset 0 -1em 3em 2em rgba(0,0,0,0.5);
+    border-radius:0% 100% 50% 50% / 0% 0% 100% 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* for safari */
+    filter:blur(.2em);
+    transform:scale(0.5) rotate(50deg);
+    opacity:0.3;
+    transition:all 3s;
+    transition-delay:.5s;
+  }
+  .magic .answer span{
+    font:1.2em/1.5 arial;
+    color:white;
+  }
+  .magic .answer u{
+    shape-outside: polygon(0 0, 0 100%, 100% 100%);
+    shape-margin: .5em;
+    width: 49%;
+    height: 100%;
+    float: left;
+  }
+  .magic .answer u + u{
+    shape-outside: polygon(0 100% , 100% 100%, 100% 0%);
+    float: right;
+  }
+  input:checked~.ball .roll{  
+    animation:1s show 1s forwards;
+  }
+  input:checked~.ball{  
+    animation: .7s ease-in-out 1 forwards shake;
+  } 
+  input:checked~.ball{
+    transform:scale(.8);
+  }
+  input:checked~.ball .answer{
+    filter:blur(0);
+    transform:scale(1) rotate(-3deg) translateY(1em);
+    opacity:1;
+  }
+  input{
+    display:none;
+  }
+  input:checked~.ball .reset{
+    display:block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: red;
+    opacity: 0;
+    z-index: 3;
+  }
+  .answer span::after{
+    content:'';
+    font-size:.9em;
+  }
+  @media screen and (max-width:500px){
+    .answer span::after{
+      font-size:.5em;
+    }
+  }
+  #a1:checked ~* .answer span::after{content:'It is certain'}
+  #a2:checked ~* .answer span::after{content:'It is decidedly so';}
+  #a3:checked ~* .answer span::after{content:'Without a doubt'}
+  #a4:checked ~* .answer span::after{content:'Yes - definitely';}
+  #a5:checked ~* .answer span::after{content:'You may rely on it'}
+  #a6:checked ~* .answer span::after{content:'As I see it, yes'}
+  #a7:checked ~* .answer span::after{content:'Most likely'}
+  #a8:checked ~* .answer span::after{content:'Outlook good'}
+  #a9:checked ~* .answer span::after{content:'Yes'}
+  #a10:checked ~* .answer span::after{content:'Signs point to yes'}
+  #a11:checked ~* .answer span::after{content:'Reply hazy, try again';}
+  #a12:checked ~* .answer span::after{content:'Ask again later'}
+  #a13:checked ~* .answer span::after{content:'Better not tell you now'}
+  #a14:checked ~* .answer span::after{content:'Cannot predict now'}
+  #a15:checked ~* .answer span::after{content:'Concentrate and ask again'}
+  #a16:checked ~* .answer span::after{content:"Don't count on it"}
+  #a17:checked ~* .answer span::after{content:'My reply is no'}
+  #a18:checked ~* .answer span::after{content:'My sources say no'}
+  #a19:checked ~* .answer span::after{content:'Outlook not so good'}
+  #a20:checked ~* .answer span::after{content:'Very doubtful'}
+
+  .ball label{
+    position:absolute;
+    top:0;
+    display:block;
+    height:25em;
+    width:8em;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index:3;
+    transform-origin:bottom;
+    cursor: pointer;
+    animation:20s random infinite linear;
+  }
+  label:nth-of-type(2){animation-delay:-1s;}
+  label:nth-of-type(3){animation-delay:-2s;}
+  label:nth-of-type(4){animation-delay:-3s;}
+  label:nth-of-type(5){animation-delay:-4s;}
+  label:nth-of-type(6){animation-delay:-5s;}
+  label:nth-of-type(7){animation-delay:-6s;}
+  label:nth-of-type(8){animation-delay:-7s;}
+  label:nth-of-type(9){animation-delay:-8s;}
+  label:nth-of-type(10){animation-delay:-9s;}
+  label:nth-of-type(11){animation-delay:-10s;}
+  label:nth-of-type(12){animation-delay:-11s;}
+  label:nth-of-type(13){animation-delay:-12s;}
+  label:nth-of-type(14){animation-delay:-13s;}
+  label:nth-of-type(15){animation-delay:-14s;}
+  label:nth-of-type(16){animation-delay:-15s;}
+  label:nth-of-type(17){animation-delay:-16s;}
+  label:nth-of-type(18){animation-delay:-17s;}
+  label:nth-of-type(19){animation-delay:-18s;}
+  label:nth-of-type(20){animation-delay:-19s;}
+
+  @keyframes random{
+    to{transform:rotate(360deg);}
+  }
+  @keyframes roll{
+    from{transform: rotateX(180deg)}
+    to{transform: rotateX(-180deg)}
+  }
+
+  @keyframes show{
+    to{transform: rotateX(195deg)}
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .roll{
+      animation:none;
+    }
+    input:checked~.ball .roll{  
+      animation:0s show forwards;
+    }
+    input:checked~.ball{  
+      animation: 0s shake forwards; 
+    } 
+  }
+
+  /***** Shaking Animation CSS Code *****/
+  /* Credit for this goes to Kevin Lassar's CSS Jitter Affect */
+  /* Source: https://codepen.io/klassar01/pen/vdqGKv?editors=1100*/
+  @keyframes shake {
+    10% {
+      transform: translate(-2px, -3px) scale(.808, .808);
+    }
+    20% {
+      transform: translate(3px, 2px) scale(.792, .792);
+    }
+    30% {
+      transform: translate(-4px, -5px) scale(.808, .808);	
+    }
+    40% {
+      transform: translate(2px, 3px) scale(.8, .8);
+    }
+    50% {
+      transform: translate(-1px, -2px) scale(.784, .784);
+    }
+    60% {
+      transform: translate(0px, 3px) scale(.816, .816);
+    }
+    70% {
+      transform: translate(-2px, -4px) scale(.8, .8);
+    }
+    80% {
+      transform: translate(3px, 2px) scale(.792, .792);
+    }
+    90% {
+      transform: translate(-5px, -3px) scale(.88, .88);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(.8, .8);
+    }								
   }
 
   </style>
@@ -157,39 +495,108 @@
 <body>
 
   <div class="container">
-    <nav>
-      <ul>
-        <li><a href="https://quand.travaillerai.je" title="Oracle, quand travaillerai-je?" class="hvr-bounce-in">quand</a></li>
-        <li><a href="https://pourquoi.travaillerai.je" title="Oracle, pourquoi travaillerai-je?" class="hvr-bounce-in">pourquoi</a></li>
-        <li><a href="" title="pas encore" class="deadlink">pour qui</a></li>
-        <li><a href="" title="pas encore" class="deadlink">avec qui</a></li>    
-      </ul>
-    </nav>
-    <h1>Travaillerai-je?</h1>
-    <h2>non peut-être.</h2>
-    <hr class="bottom">
-    <p>Un animal qui broute ne travaille-t-il pas? Une meute qui chasse ne socialise-elle pas? Le nid n'est il pas ce que l'oiseau construit?</p>
-    <p>Cela dit, <i>"travailler"</i> ne va pas de soi ; c’est une opération complexe a mener.</p>
-    <p class="noindent">Elle implique:</p>
-    <p>
-      <ul class="para">
-        <li>que l’on prenne conscience de la chose à faire,</li>
-        <li>que l’on trouve en soi une envie suffisante de la faire,</li>
-        <li>que l’on décide de traduire cette envie en actes,</li>
-        <li>que l’on se représente les opérations à réaliser pour y parvenir,</li>
-        <li>que l’on ait, à la fois, la capacité technique de les réaliser et la capacité psychologique de soutenir l’effort nécessaire à cette réalisation.</li>
-      </ul>
-    </p>
-    <p>En deux mots, c'est tout un programme que de travailler! </p>
-    <p>Heureusement que l'Oracle est la pour repondre aux questions essentielles le concernant.</p>
+
+    <div class="menu">
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="menu-inner">   
+        <ul>
+          <li><a href="https://quand.travaillerai.je" title="Oracle, quand travaillerai-je?" class="hvr-bounce-in">quand</a></li>
+          <li><a href="https://pourquoi.travaillerai.je" title="Oracle, pourquoi travaillerai-je?" class="hvr-bounce-in">pourquoi</a></li>
+          <li><a href="" title="pas encore" class="deadlink">pour qui</a></li>
+          <li><a href="" title="pas encore" class="deadlink">avec qui</a></li>    
+        </ul>
+      </div>
+      <svg version="1.1" id="blob" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z"/>
+      </svg>
+    </div>       
+    <div class="header">
+      <h1>Travaillerai-je?</h1>
+    </div>
+    <div class="content">
+      <form class="oracle">
+        <input type="radio" name="magic8" id="a1">
+        <input type="radio" name="magic8" id="a2">
+        <input type="radio" name="magic8" id="a3">
+        <input type="radio" name="magic8" id="a4">
+        <input type="radio" name="magic8" id="a5">
+        <input type="radio" name="magic8" id="a6">
+        <input type="radio" name="magic8" id="a7">
+        <input type="radio" name="magic8" id="a8">
+        <input type="radio" name="magic8" id="a9">
+        <input type="radio" name="magic8" id="a10">
+        <input type="radio" name="magic8" id="a11">
+        <input type="radio" name="magic8" id="a12">
+        <input type="radio" name="magic8" id="a13">
+        <input type="radio" name="magic8" id="a14">
+        <input type="radio" name="magic8" id="a15">
+        <input type="radio" name="magic8" id="a16">
+        <input type="radio" name="magic8" id="a17">
+        <input type="radio" name="magic8" id="a18">
+        <input type="radio" name="magic8" id="a19">
+        <input type="radio" name="magic8" id="a20">
+        
+        <div class="ball">
+          <div class="roll">
+            <div class="eight3D">
+              <div class="eight"><b>8</b></div>
+            </div>
+            <div class="magic3D">
+              <div class="magic">
+                <div class="answer"><u></u><u></u><span></span></div>
+              </div>
+            </div>
+          </div>
+          <label for="a1"></label>
+          <label for="a2"></label>
+          <label for="a3"></label>
+          <label for="a4"></label>
+          <label for="a5"></label>
+          <label for="a6"></label>
+          <label for="a7"></label>
+          <label for="a8"></label>
+          <label for="a9"></label>
+          <label for="a10"></label>
+          <label for="a11"></label>
+          <label for="a12"></label>
+          <label for="a13"></label>
+          <label for="a14"></label>
+          <label for="a15"></label>
+          <label for="a16"></label>
+          <label for="a17"></label>
+          <label for="a18"></label>
+          <label for="a19"></label>
+          <label for="a20"></label>
+          <input type="reset" class="reset">
+        </div>
+      </form>
+      <article>
+        <h2>This is another title</h2>
+        <p>This is a short paragraph explaining silly things</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in augue interdum, vehicula nunc ac, ullamcorper nibh. Phasellus aliquet accumsan purus, faucibus tristique risus molestie sit amet. Nam a posuere augue. Aliquam erat volutpat. Vivamus at enim fringilla, ultricies arcu id, mollis quam. Morbi a nulla pharetra, dictum mauris venenatis, porta magna. Ut bibendum purus erat. </p>
+        <p>Praesent eu massa consequat, sagittis diam ut, lacinia augue. Pellentesque vitae sem ornare, venenatis dui a, interdum justo. Vestibulum ipsum libero, auctor ac purus aliquet, vestibulum dignissim augue. Morbi quis sodales quam. Praesent ac sagittis tellus. Phasellus dolor justo, tempus vel augue in, consectetur eleifend massa. Sed posuere congue dolor. Nulla a mattis ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Curabitur maximus lectus orci, in tincidunt mauris efficitur in. Integer venenatis orci vel risus varius ultricies. Cras feugiat, ex quis egestas aliquam, diam turpis pulvinar ante, laoreet tristique sapien dui at lorem. Sed lobortis condimentum sapien, ac egestas risus commodo eget. Proin neque mauris, dapibus non tellus pharetra, condimentum varius urna. </p>
+      </article>
+      <article>
+        <h2>This is another title</h2>
+        <p>This is a short paragraph explaining silly things</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in augue interdum, vehicula nunc ac, ullamcorper nibh. Phasellus aliquet accumsan purus, faucibus tristique risus molestie sit amet. Nam a posuere augue. Aliquam erat volutpat. Vivamus at enim fringilla, ultricies arcu id, mollis quam. Morbi a nulla pharetra, dictum mauris venenatis, porta magna. Ut bibendum purus erat. </p>
+        <p>Praesent eu massa consequat, sagittis diam ut, lacinia augue. Pellentesque vitae sem ornare, venenatis dui a, interdum justo. Vestibulum ipsum libero, auctor ac purus aliquet, vestibulum dignissim augue. Morbi quis sodales quam. Praesent ac sagittis tellus. Phasellus dolor justo, tempus vel augue in, consectetur eleifend massa. Sed posuere congue dolor. Nulla a mattis ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Curabitur maximus lectus orci, in tincidunt mauris efficitur in. Integer venenatis orci vel risus varius ultricies. Cras feugiat, ex quis egestas aliquam, diam turpis pulvinar ante, laoreet tristique sapien dui at lorem. Sed lobortis condimentum sapien, ac egestas risus commodo eget. Proin neque mauris, dapibus non tellus pharetra, condimentum varius urna. </p>
+      </article>      
+    </div>
+    <div class="footer">
+      <div class="navbg" id="banner">
+        <div class="git">
+          <a href="https://github.com/AlfredJKwack/travaillerai.je" title="Participez au fun sur GitHub">
+            <svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>
+          </a>
+        </div>    
+      </div>
+    </div>
   </div>
-  <div class="navbg" id="banner">
-    <div class="git">
-      <a href="https://github.com/AlfredJKwack/travaillerai.je" title="Participez au fun sur GitHub">
-        <svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>
-      </a>
-    </div>    
-  </div> 
 
   <script type="text/javascript">
     document.getElementById('banner').style.background=myColor;
