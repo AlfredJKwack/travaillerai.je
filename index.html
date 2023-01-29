@@ -114,16 +114,31 @@
   <style type="text/css">
 
   body {
-    font: 400 16px/21px 'pt sans narrow';
+    font: 400 16px 'pt sans';
   }
 
   h1, h2 {
     color: #222;
-    font: 700 24px/24px 'pt sans narrow';
+    font: 700 24px 'pt sans narrow';
   }
   h1 {
     text-transform: uppercase;
   }
+  a.hvr-bounce-in{
+    color: rgba(0, 0, 0, 0.4) !important;
+  } 
+  a.hvr-bounce-in:before{
+    position: absolute;
+    padding: 10px;
+    overflow: hidden;
+    content: attr(alt);
+    transition: all 0.3s;
+    transform: scale(1.2);
+  } 
+  a.hvr-bounce-in:hover:before{
+    transform: scale(1);
+    opacity: 1;
+  } 
  
   /***** General layout *****/
   .container{
@@ -145,13 +160,15 @@
   }
   .content{
     grid-column: 2 / -1;
-    background-color: red;
-    padding: 1em;
   }
   .footer{
     grid-column: 2 / -1; 
     background-color: blue;
   }
+  article{
+    padding: 1em;
+  }
+
 
   /***** Gooey Hover Menu *****/
   /* Credits go to Michael Leonard for his concept work */
@@ -185,10 +202,13 @@
   }
   .menu ul li {
     color: #fff;
-    font-family: sans-serif;
+    font: 700 21px 'pt sans narrow';
     padding: 20px 0;
-  }    
-
+  }
+  .menu ul li a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.1);
+  }
   #blob {
     top: 0;
     z-index: -1;
@@ -202,7 +222,6 @@
     height: 100%;
     fill:  #FED057;
   }
-
   .hamburger {
     right: 20px;
     position: absolute;
@@ -210,19 +229,16 @@
     height: 20px;
     margin-top: -10px;	
   }
-
   .hamburger .line {
     width: 100%;
     height: 4px;
     background-color: #fff;
     position: absolute;
   }
-
   .hamburger .line:nth-child(2) {
     top: 50%;
     margin-top: -2px;
   }
-
   .hamburger .line:nth-child(3) {
     bottom: 0;
   }
@@ -233,13 +249,25 @@
 
   .oracle{
     font-size:1.6vmin;
+    height: 100vh;
     display: grid;
-    place-items: center;
+    justify-items: center;
     text-align:center;
+    background: linear-gradient(
+      0deg, 
+      rgb(171, 171, 171, 50) 0%, 
+      rgb(196, 196, 196) 21%,
+      rgb(219, 219, 219) 21%, 
+      rgb(255, 255, 255, 50) 50% 
+    );
+  }
+
+  .oracle + article{
+    padding-top: 3em;
   }
 
   .oracle *{
-    transform-style: preserve-3d;
+    transform-style: preserve-3d;    
   }
 
   .ball{
@@ -504,9 +532,10 @@
       </div>
       <div class="menu-inner">   
         <ul>
-          <li><a href="https://quand.travaillerai.je" title="Oracle, quand travaillerai-je?" class="hvr-bounce-in">quand</a></li>
-          <li><a href="https://pourquoi.travaillerai.je" title="Oracle, pourquoi travaillerai-je?" class="hvr-bounce-in">pourquoi</a></li>
-          <li><a href="" title="pas encore" class="deadlink">pour qui</a></li>
+          <li><a href="https://quand.travaillerai.je" title="Oracle, quand travaillerai-je?" class="hvr-bounce-in">Quand...</a></li>
+          <li><a href="https://pourquoi.travaillerai.je" title="Oracle, pourquoi travaillerai-je?" class="hvr-bounce-in">Pourquoi...</a></li>
+          <li><a href="https://comment.travaillerai.je" title="Oracle, comment travaillerai-je?" class="hvr-bounce-in">Comment...</a></li>
+          <li><a href="" title="pas encore" class="deadlink">pour qui</a></li>    
           <li><a href="" title="pas encore" class="deadlink">avec qui</a></li>    
         </ul>
       </div>
