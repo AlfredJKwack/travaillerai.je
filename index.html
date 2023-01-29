@@ -243,16 +243,9 @@
   .hamburger .line:nth-child(3) {
     bottom: 0;
   }
- 
-  /***** Magic 8 ball CSS Code *****/
-  /* Credits go to Mark Robbins' amazing Magic 8 Ball code */
-  /* Source: https://codepen.io/M_J_Robbins/pen/mdyqqNW?editors=1100 */
 
-  .oracle{
-    font-size:1.6vmin;
-    height: 100vh;
-    display: grid;
-    justify-items: center;
+  .hero{
+    height: calc(100vh - 6em);
     text-align:center;
     background: linear-gradient(
       0deg, 
@@ -261,9 +254,21 @@
       rgb(219, 219, 219) 21%, 
       rgb(255, 255, 255, 50) 50% 
     );
+    overflow: hidden;
+  }
+ 
+  /***** Magic 8 ball CSS Code *****/
+  /* Credits go to Mark Robbins' amazing Magic 8 Ball code */
+  /* Source: https://codepen.io/M_J_Robbins/pen/mdyqqNW?editors=1100 */
+
+  .oracle{
+    font-size:0.8rem;
+    display:inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);   
   }
 
-  .oracle + article{
+  .article{
     padding-top: 3em;
   }
 
@@ -281,6 +286,7 @@
     overflow:hidden;
     transform:scale(0.8);
     transition:transform 1s;
+    box-shadow: rgba(0, 0, 0, 0.45) 0 20em 8em -2em;
   }
   .ball::after {
     content: '';
@@ -395,11 +401,32 @@
     content:'';
     font-size:.9em;
   }
-  @media screen and (max-width:500px){
+  @media screen 
+  and (max-width:700px){
     .answer span::after{
-      font-size:.5em;
+      /* font-size:.5em; */
     }
   }
+  @media only screen 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    .oracle{
+      font-size: 2rem;
+    }
+    body {
+      font: 400 clamp(2rem, 4vw + 1rem, 4rem) 'pt sans';
+    }    
+  }
+  @media only screen 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    .oracle{
+      font-size: 2rem;
+    }
+    body {
+      font: 400 clamp(2rem, 4vw + 1rem, 4rem) 'pt sans';
+    }    
+  }  
   #a1:checked ~* .answer span::after{content:'It is certain'}
   #a2:checked ~* .answer span::after{content:'It is decidedly so';}
   #a3:checked ~* .answer span::after{content:'Without a doubt'}
@@ -538,62 +565,64 @@
       <h1>Travaillerai-je?</h1>
     </div>
     <div class="content">
-      <form class="oracle">
-        <input type="radio" name="magic8" id="a1">
-        <input type="radio" name="magic8" id="a2">
-        <input type="radio" name="magic8" id="a3">
-        <input type="radio" name="magic8" id="a4">
-        <input type="radio" name="magic8" id="a5">
-        <input type="radio" name="magic8" id="a6">
-        <input type="radio" name="magic8" id="a7">
-        <input type="radio" name="magic8" id="a8">
-        <input type="radio" name="magic8" id="a9">
-        <input type="radio" name="magic8" id="a10">
-        <input type="radio" name="magic8" id="a11">
-        <input type="radio" name="magic8" id="a12">
-        <input type="radio" name="magic8" id="a13">
-        <input type="radio" name="magic8" id="a14">
-        <input type="radio" name="magic8" id="a15">
-        <input type="radio" name="magic8" id="a16">
-        <input type="radio" name="magic8" id="a17">
-        <input type="radio" name="magic8" id="a18">
-        <input type="radio" name="magic8" id="a19">
-        <input type="radio" name="magic8" id="a20">
-        
-        <div class="ball">
-          <div class="roll">
-            <div class="eight3D">
-              <div class="eight"><b>8</b></div>
-            </div>
-            <div class="magic3D">
-              <div class="magic">
-                <div class="answer"><u></u><u></u><span></span></div>
+      <article class="hero">
+        <form class="oracle">
+          <input type="radio" name="magic8" id="a1">
+          <input type="radio" name="magic8" id="a2">
+          <input type="radio" name="magic8" id="a3">
+          <input type="radio" name="magic8" id="a4">
+          <input type="radio" name="magic8" id="a5">
+          <input type="radio" name="magic8" id="a6">
+          <input type="radio" name="magic8" id="a7">
+          <input type="radio" name="magic8" id="a8">
+          <input type="radio" name="magic8" id="a9">
+          <input type="radio" name="magic8" id="a10">
+          <input type="radio" name="magic8" id="a11">
+          <input type="radio" name="magic8" id="a12">
+          <input type="radio" name="magic8" id="a13">
+          <input type="radio" name="magic8" id="a14">
+          <input type="radio" name="magic8" id="a15">
+          <input type="radio" name="magic8" id="a16">
+          <input type="radio" name="magic8" id="a17">
+          <input type="radio" name="magic8" id="a18">
+          <input type="radio" name="magic8" id="a19">
+          <input type="radio" name="magic8" id="a20">
+          
+          <div class="ball">
+            <div class="roll">
+              <div class="eight3D">
+                <div class="eight"><b>8</b></div>
+              </div>
+              <div class="magic3D">
+                <div class="magic">
+                  <div class="answer"><u></u><u></u><span></span></div>
+                </div>
               </div>
             </div>
+            <label for="a1"></label>
+            <label for="a2"></label>
+            <label for="a3"></label>
+            <label for="a4"></label>
+            <label for="a5"></label>
+            <label for="a6"></label>
+            <label for="a7"></label>
+            <label for="a8"></label>
+            <label for="a9"></label>
+            <label for="a10"></label>
+            <label for="a11"></label>
+            <label for="a12"></label>
+            <label for="a13"></label>
+            <label for="a14"></label>
+            <label for="a15"></label>
+            <label for="a16"></label>
+            <label for="a17"></label>
+            <label for="a18"></label>
+            <label for="a19"></label>
+            <label for="a20"></label>
+            <input type="reset" class="reset">
           </div>
-          <label for="a1"></label>
-          <label for="a2"></label>
-          <label for="a3"></label>
-          <label for="a4"></label>
-          <label for="a5"></label>
-          <label for="a6"></label>
-          <label for="a7"></label>
-          <label for="a8"></label>
-          <label for="a9"></label>
-          <label for="a10"></label>
-          <label for="a11"></label>
-          <label for="a12"></label>
-          <label for="a13"></label>
-          <label for="a14"></label>
-          <label for="a15"></label>
-          <label for="a16"></label>
-          <label for="a17"></label>
-          <label for="a18"></label>
-          <label for="a19"></label>
-          <label for="a20"></label>
-          <input type="reset" class="reset">
-        </div>
-      </form>
+        </form>
+      </article>
       <article>
         <h2>This is another title</h2>
         <p>This is a short paragraph explaining silly things</p>
