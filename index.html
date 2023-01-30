@@ -449,28 +449,7 @@
       font: 400 clamp(2rem, 4vw + 1rem, 4rem) 'pt sans';
     }    
   }  
-/*   
-  #a1:checked ~* .answer span::after{content:'It is certain'}
-  #a2:checked ~* .answer span::after{content:'It is decidedly so';}
-  #a3:checked ~* .answer span::after{content:'Without a doubt'}
-  #a4:checked ~* .answer span::after{content:'Yes - definitely';}
-  #a5:checked ~* .answer span::after{content:'You may rely on it'}
-  #a6:checked ~* .answer span::after{content:'As I see it, yes'}
-  #a7:checked ~* .answer span::after{content:'Most likely'}
-  #a8:checked ~* .answer span::after{content:'Outlook good'}
-  #a9:checked ~* .answer span::after{content:'Yes'}
-  #a10:checked ~* .answer span::after{content:'Signs point to yes'}
-  #a11:checked ~* .answer span::after{content:'Reply hazy, try again';}
-  #a12:checked ~* .answer span::after{content:'Ask again later'}
-  #a13:checked ~* .answer span::after{content:'Better not tell you now'}
-  #a14:checked ~* .answer span::after{content:'Cannot predict now'}
-  #a15:checked ~* .answer span::after{content:'Concentrate and ask again'}
-  #a16:checked ~* .answer span::after{content:"Don't count on it"}
-  #a17:checked ~* .answer span::after{content:'My reply is no'}
-  #a18:checked ~* .answer span::after{content:'My sources say no'}
-  #a19:checked ~* .answer span::after{content:'Outlook not so good'}
-  #a20:checked ~* .answer span::after{content:'Very doubtful'} 
-*/
+  
   #a1:checked ~* .answer span::after{content:'C\'est certain'}
   #a2:checked ~* .answer span::after{content:'C\'est décidément ainsi';}
   #a3:checked ~* .answer span::after{content:'Sans aucun doute'}
@@ -489,7 +468,7 @@
   #a16:checked ~* .answer span::after{content:"Ne comptez pas dessus"}
   #a17:checked ~* .answer span::after{content:'Ma réponse est non'}
   #a18:checked ~* .answer span::after{content:'Mes sources disent non'}
-  #a19:checked ~* .answer span::after{content:'Mauvaise jonction'}
+  #a19:checked ~* .answer span::after{content:'Mauvaise conjoncture'}
   #a20:checked ~* .answer span::after{content:'J\'en doute'}
 
   .ball label{
@@ -542,42 +521,6 @@
     input:checked~.ball .roll{  
       animation:0s show forwards;
     }
-  }
-
-  /***** Shaking Animation CSS Code *****/
-  /* Credit for this goes to Kevin Lassar's CSS Jitter Affect */
-  /* Source: https://codepen.io/klassar01/pen/vdqGKv?editors=1100*/
-  @keyframes shake {
-    10% {
-      transform: translate(-2px, -3px) scale(.808, .808);
-    }
-    20% {
-      transform: translate(3px, 2px) scale(.792, .792);
-    }
-    30% {
-      transform: translate(-4px, -5px) scale(.808, .808);	
-    }
-    40% {
-      transform: translate(2px, 3px) scale(.8, .8);
-    }
-    50% {
-      transform: translate(-1px, -2px) scale(.784, .784);
-    }
-    60% {
-      transform: translate(0px, 3px) scale(.816, .816);
-    }
-    70% {
-      transform: translate(-2px, -4px) scale(.8, .8);
-    }
-    80% {
-      transform: translate(3px, 2px) scale(.792, .792);
-    }
-    90% {
-      transform: translate(-5px, -3px) scale(.88, .88);
-    }
-    100% {
-      transform: translate(0px, 0px) scale(.8, .8);
-    }								
   }
 
   /***** Hover effects *****/ 
