@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aah le W</title>
+  <title>Travaillerai-je?</title>
   <meta charset="utf-8">
-  <meta name="description" content="Des réponses inattendues a la question essentielle du travail et le plein emploi.">
+  <meta name="description" content="Des réponses inattendues a la question essentielle du travail.">
 
   <link rel="icon" href="favicon.png">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -133,26 +133,6 @@
     font-style: italic;
   }
 
-  a.hvr-underline-from-right{
-    vertical-align: bottom;
-  }
-
-  .gh-inline{
-    width: 1.5em;
-    height: 1.5em;
-    margin: -0.4em;
-    filter: invert(15%) sepia(63%) saturate(3010%) hue-rotate(286deg) brightness(97%) contrast(100%);
-  }
-  .gh-inline:hover{
-    filter: invert(76%) sepia(40%) saturate(463%) hue-rotate(74deg) brightness(98%) contrast(95%);
-  }
-  .equation{
-    margin: 0 2em;
-  }
-  .footer p span{
-    white-space:nowrap;
-  }
-
   /***** General layout *****/
   .container{
     display: grid;
@@ -178,7 +158,7 @@
     grid-column: 2 / -1; 
     background-color: #2222220f;
     color: #222222ad;
-    font-size: .6em;
+    font-size: .5em;
     text-align: center;
     display:grid;
     place-items: center;
@@ -187,6 +167,26 @@
     padding: 1em 1em 0 1em;
   }
 
+
+  /***** Some specifics that needs handling *****/
+  a.hvr-underline-from-right{
+    vertical-align: bottom;
+  }
+  .gh-inline{
+    width: 1.5em;
+    height: 1.5em;
+    margin: -0.4em;
+    filter: invert(15%) sepia(63%) saturate(3010%) hue-rotate(286deg) brightness(97%) contrast(100%);
+  }
+  .gh-inline:hover{
+    filter: invert(76%) sepia(40%) saturate(463%) hue-rotate(74deg) brightness(98%) contrast(95%);
+  }
+  .equation{
+    margin: 0 2em;
+  }
+  .footer p span{
+    white-space:nowrap;
+  }  
 
   /***** Gooey Hover Menu *****/
   /* Credits go to Michael Leonard for his concept work */
@@ -421,7 +421,7 @@
   }
   .answer span::after{
     content:'';
-    font-size:.9em;
+    font-size:.7em;
   }
   @media screen 
   and (max-width:700px){
@@ -449,6 +449,7 @@
       font: 400 clamp(2rem, 4vw + 1rem, 4rem) 'pt sans';
     }    
   }  
+/*   
   #a1:checked ~* .answer span::after{content:'It is certain'}
   #a2:checked ~* .answer span::after{content:'It is decidedly so';}
   #a3:checked ~* .answer span::after{content:'Without a doubt'}
@@ -468,7 +469,28 @@
   #a17:checked ~* .answer span::after{content:'My reply is no'}
   #a18:checked ~* .answer span::after{content:'My sources say no'}
   #a19:checked ~* .answer span::after{content:'Outlook not so good'}
-  #a20:checked ~* .answer span::after{content:'Very doubtful'}
+  #a20:checked ~* .answer span::after{content:'Very doubtful'} 
+*/
+  #a1:checked ~* .answer span::after{content:'C\'est certain'}
+  #a2:checked ~* .answer span::after{content:'C\'est décidément ainsi';}
+  #a3:checked ~* .answer span::after{content:'Sans aucun doute'}
+  #a4:checked ~* .answer span::after{content:'Oui - absolument';}
+  #a5:checked ~* .answer span::after{content:'Comptez dessus'}
+  #a6:checked ~* .answer span::after{content:'Comme je le vois oui'}
+  #a7:checked ~* .answer span::after{content:'Probablement'}
+  #a8:checked ~* .answer span::after{content:'Les perspectives sont OK'}
+  #a9:checked ~* .answer span::after{content:'Oui'}
+  #a10:checked ~* .answer span::after{content:'Les signes disent oui'}
+  #a11:checked ~* .answer span::after{content:'Brumeux, réessayer';}
+  #a12:checked ~* .answer span::after{content:'Revenez plus tard'}
+  #a13:checked ~* .answer span::after{content:'Mieux vaut pas demander'}
+  #a14:checked ~* .answer span::after{content:'Impossible de prédire'}
+  #a15:checked ~* .answer span::after{content:'Concentation re-demandez'}
+  #a16:checked ~* .answer span::after{content:"Ne comptez pas dessus"}
+  #a17:checked ~* .answer span::after{content:'Ma réponse est non'}
+  #a18:checked ~* .answer span::after{content:'Mes sources disent non'}
+  #a19:checked ~* .answer span::after{content:'Mauvaise jonction'}
+  #a20:checked ~* .answer span::after{content:'J\'en doute'}
 
   .ball label{
     position:absolute;
@@ -711,7 +733,7 @@
       </article>      
     </div>
     <div class="footer">
-      <p><span>Notre politique de <em>cookies</em>: y'a pas de cookies, on traque pas.</span> <span>Nos <em>droits d'auteur</em>: soyez sympa, c'est du fait main.</span></p>
+      <p><span>Notre politique de <em>cookies</em>: y'a pas de cookies.</span> &mdash; <span>Nos <em>droits d'auteur</em>: soyez sympa, c'est du fait main.</span></p>
     </div>
   </div>
 
