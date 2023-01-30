@@ -6,7 +6,6 @@
   <meta name="description" content="Des réponses inattendues a la question essentielle du travail et le plein emploi.">
 
   <link rel="icon" href="favicon.png">
-  <link href="css/hover-min.css" rel="stylesheet" media="all">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
   <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700|PT+Sans:700,400|PT+Serif:400,400i" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet"/>
@@ -131,19 +130,7 @@
   }
   a.hvr-bounce-in{
     color: rgba(0, 0, 0, 0.4) !important;
-  } 
-  a.hvr-bounce-in:before{
-    position: absolute;
-    padding: 10px;
-    overflow: hidden;
-    content: attr(alt);
-    transition: all 0.3s;
-    transform: scale(1.2);
-  } 
-  a.hvr-bounce-in:hover:before{
-    transform: scale(1);
-    opacity: 1;
-  } 
+  }
  
   /***** General layout *****/
   .container{
@@ -260,7 +247,10 @@
       rgb(219, 219, 219) 21%, 
       rgb(255, 255, 255, 50) 50% 
     );
-    overflow: hidden;
+    overflow: hidden; 
+  }
+  article.hero{
+    padding-top: 0em;
   }
  
   /***** Magic 8 ball CSS Code *****/
@@ -273,11 +263,6 @@
     margin-left: 50%;
     transform: translateX(-50%);   
   }
-
-  .article{
-    padding-top: 3em;
-  }
-
   .oracle *{
     transform-style: preserve-3d;
   }
@@ -302,6 +287,7 @@
     z-index: 2;
     position: absolute;
     background-image: radial-gradient(farthest-side at 60% 30%,rgba(255,255,255,.2),transparent,rgba(0,0,0,.7));
+    
   }
   .roll{
     transform: rotateX(20deg);
@@ -540,6 +526,26 @@
     100% {
       transform: translate(0px, 0px) scale(.8, .8);
     }								
+  }
+
+  /***** Hover effects *****/ 
+  /* Credit goes to Ian Lunn for his awesome Hover Lib */
+  /* Source: https://ianlunn.github.io/Hover/ */
+
+  .hvr-bounce-in {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+  }
+  .hvr-bounce-in:hover, .hvr-bounce-in:focus, .hvr-bounce-in:active {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   }
 
   </style>
