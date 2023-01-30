@@ -113,16 +113,52 @@
     text-transform: uppercase;
     font-size: max(min(10vw, 5rem), 2.5rem);
   }
-  a.hvr-bounce-in{
-    color: rgba(0, 0, 0, 0.4) !important;
+  p {
+    margin: 1em 0;
   }
- 
+  em {
+    color: #222222ad;
+  }
+  blockquote {
+    margin: 0 1em;
+    padding: .3em .6em;
+    background-color: #2222220f;
+    border-radius: .6em;
+    font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+  }
+  i {
+    font-style: italic;
+  }
+
+  a.hvr-underline-from-right{
+    vertical-align: bottom;
+  }
+
+  .gh-inline{
+    width: 1.5em;
+    height: 1.5em;
+    margin: -0.4em;
+    filter: invert(15%) sepia(63%) saturate(3010%) hue-rotate(286deg) brightness(97%) contrast(100%);
+  }
+  .gh-inline:hover{
+    filter: invert(76%) sepia(40%) saturate(463%) hue-rotate(74deg) brightness(98%) contrast(95%);
+  }
+  .equation{
+    margin: 0 2em;
+  }
+  .footer p span{
+    white-space:nowrap;
+  }
+
   /***** General layout *****/
   .container{
     display: grid;
     grid-gap: 0;
     grid-template-columns: 60px 200px 1fr;
-    grid-template-rows: 6em auto 2em;
+    grid-template-rows: 6em auto 3em;
   }
   .header{
     grid-column: 2 / -1; 
@@ -140,10 +176,15 @@
   }
   .footer{
     grid-column: 2 / -1; 
-    background-color: blue;
+    background-color: #2222220f;
+    color: #222222ad;
+    font-size: .6em;
+    text-align: center;
+    display:grid;
+    place-items: center;
   }
   article{
-    padding: 1em;
+    padding: 1em 1em 0 1em;
   }
 
 
@@ -188,6 +229,10 @@
     text-decoration: none;
     color: rgba(0, 0, 0, 0.1);
   }
+  .menu ul li a.hvr-bounce-in{
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
   #blob {
     top: 0;
     z-index: -1;
@@ -517,6 +562,7 @@
   /* Credit goes to Ian Lunn for his awesome Hover Lib */
   /* Source: https://ianlunn.github.io/Hover/ */
 
+  /* Hover Bounce in */
   .hvr-bounce-in {
     display: inline-block;
     vertical-align: middle;
@@ -533,6 +579,35 @@
     transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   }
 
+  /* Underline From Right */
+  .hvr-underline-from-right {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hvr-underline-from-right:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 100%;
+    right: 0;
+    bottom: 0;
+    background: #2098D1;
+    height: 4px;
+    -webkit-transition-property: left;
+    transition-property: left;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-underline-from-right:hover:before, .hvr-underline-from-right:focus:before, .hvr-underline-from-right:active:before {
+    left: 0;
+  }
   </style>
 </head>
 <body>
@@ -621,26 +696,22 @@
         </form>
       </article>
       <article>
-        <h2>This is another title</h2>
-        <p>This is a short paragraph explaining silly things</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in augue interdum, vehicula nunc ac, ullamcorper nibh. Phasellus aliquet accumsan purus, faucibus tristique risus molestie sit amet. Nam a posuere augue. Aliquam erat volutpat. Vivamus at enim fringilla, ultricies arcu id, mollis quam. Morbi a nulla pharetra, dictum mauris venenatis, porta magna. Ut bibendum purus erat. </p>
-        <p>Praesent eu massa consequat, sagittis diam ut, lacinia augue. Pellentesque vitae sem ornare, venenatis dui a, interdum justo. Vestibulum ipsum libero, auctor ac purus aliquet, vestibulum dignissim augue. Morbi quis sodales quam. Praesent ac sagittis tellus. Phasellus dolor justo, tempus vel augue in, consectetur eleifend massa. Sed posuere congue dolor. Nulla a mattis ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Curabitur maximus lectus orci, in tincidunt mauris efficitur in. Integer venenatis orci vel risus varius ultricies. Cras feugiat, ex quis egestas aliquam, diam turpis pulvinar ante, laoreet tristique sapien dui at lorem. Sed lobortis condimentum sapien, ac egestas risus commodo eget. Proin neque mauris, dapibus non tellus pharetra, condimentum varius urna. </p>
+        <h2>C'est quoi ce charabia?</h2>
+        <p>Ce site a pour seul but de résoudre l'équation ci-dessous. Ou du moins, il vous aidera à déterminer si le jeu en vaut la chandelle.</p>
+        <p><span class="equation"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/3b68d9e3207f4d1d7d9f43d5444432af0c2f9f84" class="math" aria-hidden="true" style="vertical-align: -2.338ex; width:14.394ex; height:5.676ex;" alt="{\displaystyle W=\int _{\mathcal {C}}{\vec {F}}\cdot \mathrm {d} {\vec {u}}}"></span></p>        
+        <p>En effet, si vous desirez faire bouger les choses (<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/fc13e2b900b22350b240afe6bfe16289d3f08cb5" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:2.622ex; height:2.343ex;" alt="{\displaystyle \mathrm {d} {\vec {u}}}">) dans la direction <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e7b3edab7022ca9e2976651bc59c489513ee9019" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.239ex; height:2.176ex;" alt="\mathcal{C}"> en exercant une force <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ef40edff397a115ecdce7d3518001dfcc7f37d9e" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.771ex; height:2.843ex;" alt="\vec{F}"> il faudra bien fournir un travail <i>W</i>. En d'autres termes, sans <em>travail</em> le resultat est connu d'avance: l'immobilité.</p>
+        <p>Cela étant dit, même lorsque vous choisissez de travailler, il peut y avoir un certain nombre de considérations qui vous font réfléchir. Vous pourriez vous demander si cela vaut la peine de travailler lorsque vous essayez de déplacer un objet immuable ou quelque chose qui lui ressemble. Vous n'êtes peut-être pas trop convaincu de la direction que prendra le travail, même si peu d'efforts peuvent être nécessaires de votre part.</p>
       </article>
       <article>
-        <h2>This is another title</h2>
-        <p>This is a short paragraph explaining silly things</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in augue interdum, vehicula nunc ac, ullamcorper nibh. Phasellus aliquet accumsan purus, faucibus tristique risus molestie sit amet. Nam a posuere augue. Aliquam erat volutpat. Vivamus at enim fringilla, ultricies arcu id, mollis quam. Morbi a nulla pharetra, dictum mauris venenatis, porta magna. Ut bibendum purus erat. </p>
-        <p>Praesent eu massa consequat, sagittis diam ut, lacinia augue. Pellentesque vitae sem ornare, venenatis dui a, interdum justo. Vestibulum ipsum libero, auctor ac purus aliquet, vestibulum dignissim augue. Morbi quis sodales quam. Praesent ac sagittis tellus. Phasellus dolor justo, tempus vel augue in, consectetur eleifend massa. Sed posuere congue dolor. Nulla a mattis ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Curabitur maximus lectus orci, in tincidunt mauris efficitur in. Integer venenatis orci vel risus varius ultricies. Cras feugiat, ex quis egestas aliquam, diam turpis pulvinar ante, laoreet tristique sapien dui at lorem. Sed lobortis condimentum sapien, ac egestas risus commodo eget. Proin neque mauris, dapibus non tellus pharetra, condimentum varius urna. </p>
+        <h2>Mais encore...</h2>
+        <p>Vous l'avez bien compris. Ca tourne pas très rond sur ce site. En effet. Ce site a été créé dans le seul but d'héberger des <em>designs humoristiques</em> centrés sur la notion du <em>travail</em>. Le domaine racine, « travaillerai.je », pose la question la plus importante et, d'une manière plus ou moins comique, vous fournit la réponse.</p>
+        <blockquote>Si vous ne l'avez pas remarqué, vous pouvez cliquer sur la boule de billard qui tourne.</blockquote>
+        <p>Il existe également quelques sous-domaines à ce stade : quand, pourquoi, comment. Chacun de ces sites héberge des réponses aléatoires a ces questions fort pertinentes.</p>
+        <p>Le contenu de ce site est ouvert à tous pour modification. Pourvu que vous ayez des qualités a faire valoir en Web Design et que vous connaissiez ce logo <span class="gh-inline hvr-bounce-in"><a href="https://github.com/AlfredJKwack/travaillerai.je" title="GitHub"><svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg></a></span> je serai ravi d'examiner et d'accepter votre <a href="https://github.com/AlfredJKwack/travaillerai.je/pulls" title="PR sur Github" class="hvr-underline-from-right">pull request &#128077;</a>.</p>
       </article>      
     </div>
     <div class="footer">
-      <div class="navbg" id="banner">
-        <div class="git">
-          <a href="https://github.com/AlfredJKwack/travaillerai.je" title="Participez au fun sur GitHub">
-            <svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>
-          </a>
-        </div>    
-      </div>
+      <p><span>Notre politique de <em>cookies</em>: y'a pas de cookies, on traque pas.</span> <span>Nos <em>droits d'auteur</em>: soyez sympa, c'est du fait main.</span></p>
     </div>
   </div>
 
