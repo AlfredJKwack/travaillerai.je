@@ -154,6 +154,14 @@
   .content{
     grid-column: 2 / -1;
   }
+  article{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(512px, 1fr));
+    grid-gap: 1em;
+  }
+  section{
+    padding: 1em 1em 0 1em;
+  }  
   .footer{
     grid-column: 2 / -1; 
     background-color: #2222220f;
@@ -163,12 +171,19 @@
     display:grid;
     place-items: center;
   }
-  article{
-    padding: 1em 1em 0 1em;
-  }
-
 
   /***** Some specifics that needs handling *****/
+  .hero{
+    height: calc(100vh - 6em);
+    background: linear-gradient(
+      0deg, 
+      rgb(171, 171, 171, 50) 0%, 
+      rgb(196, 196, 196) 21%,
+      rgb(219, 219, 219) 21%, 
+      rgb(255, 255, 255, 50) 50% 
+    );
+    overflow: hidden; 
+  }
   a.hvr-underline-from-right{
     vertical-align: bottom;
   }
@@ -265,21 +280,6 @@
   }
   .hamburger .line:nth-child(3) {
     bottom: 0;
-  }
-
-  .hero{
-    height: calc(100vh - 6em);
-    background: linear-gradient(
-      0deg, 
-      rgb(171, 171, 171, 50) 0%, 
-      rgb(196, 196, 196) 21%,
-      rgb(219, 219, 219) 21%, 
-      rgb(255, 255, 255, 50) 50% 
-    );
-    overflow: hidden; 
-  }
-  article.hero{
-    padding-top: 0em;
   }
  
   /***** Magic 8 ball CSS Code *****/
@@ -598,11 +598,11 @@
         <path id="blob-path" d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z"/>
       </svg>
     </div>       
-    <div class="header">
+    <section class="header">
       <h1>Travaillerai-je?</h1>
-    </div>
+    </section>
     <div class="content">
-      <article class="hero">
+      <div class="hero">
         <form class="oracle">
           <input type="radio" name="magic8" id="a1">
           <input type="radio" name="magic8" id="a2">
@@ -659,25 +659,27 @@
             <input type="reset" class="reset">
           </div>
         </form>
-      </article>
+      </div>
       <article>
-        <h2>C'est quoi ce charabia?</h2>
-        <p>Ce site a pour seul but de résoudre l'équation ci-dessous. Ou du moins, il vous aidera à déterminer si le jeu en vaut la chandelle.</p>
-        <p><span class="equation"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/3b68d9e3207f4d1d7d9f43d5444432af0c2f9f84" class="math" aria-hidden="true" style="vertical-align: -2.338ex; width:14.394ex; height:5.676ex;" alt="{\displaystyle W=\int _{\mathcal {C}}{\vec {F}}\cdot \mathrm {d} {\vec {u}}}"></span></p>        
-        <p>En effet, si vous desirez faire bouger les choses (<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/fc13e2b900b22350b240afe6bfe16289d3f08cb5" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:2.622ex; height:2.343ex;" alt="{\displaystyle \mathrm {d} {\vec {u}}}">) dans la direction <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e7b3edab7022ca9e2976651bc59c489513ee9019" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.239ex; height:2.176ex;" alt="\mathcal{C}"> en exercant une force <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ef40edff397a115ecdce7d3518001dfcc7f37d9e" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.771ex; height:2.843ex;" alt="\vec{F}"> il faudra bien fournir un travail <i>W</i>. En d'autres termes, sans <em>travail</em> le resultat est connu d'avance: l'immobilité.</p>
-        <p>Cela étant dit, même lorsque vous choisissez de travailler, il peut y avoir un certain nombre de considérations qui vous font réfléchir. Vous pourriez vous demander si cela vaut la peine de travailler lorsque vous essayez de déplacer un objet immuable ou quelque chose qui lui ressemble. Vous n'êtes peut-être pas trop convaincu de la direction que prendra le travail, même si peu d'efforts peuvent être nécessaires de votre part.</p>
+        <section>
+          <h2>C'est quoi ce charabia?</h2>
+          <p>Ce site a pour seul but de résoudre l'équation ci-dessous. Ou du moins, il vous aidera à déterminer si le jeu en vaut la chandelle.</p>
+          <p><span class="equation"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/3b68d9e3207f4d1d7d9f43d5444432af0c2f9f84" class="math" aria-hidden="true" style="vertical-align: -2.338ex; width:14.394ex; height:5.676ex;" alt="{\displaystyle W=\int _{\mathcal {C}}{\vec {F}}\cdot \mathrm {d} {\vec {u}}}"></span></p>        
+          <p>En effet, si vous desirez faire bouger les choses (<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/fc13e2b900b22350b240afe6bfe16289d3f08cb5" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:2.622ex; height:2.343ex;" alt="{\displaystyle \mathrm {d} {\vec {u}}}">) dans la direction <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e7b3edab7022ca9e2976651bc59c489513ee9019" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.239ex; height:2.176ex;" alt="\mathcal{C}"> en exercant une force <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ef40edff397a115ecdce7d3518001dfcc7f37d9e" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.771ex; height:2.843ex;" alt="\vec{F}"> il faudra bien fournir un travail <i>W</i>. En d'autres termes, sans <em>travail</em> le resultat est connu d'avance: l'immobilité.</p>
+          <p>Cela étant dit, même lorsque vous choisissez de travailler, il peut y avoir un certain nombre de considérations qui vous font réfléchir. Vous pourriez vous demander si cela vaut la peine de travailler lorsque vous essayez de déplacer un objet immuable ou quelque chose qui lui ressemble. Vous n'êtes peut-être pas trop convaincu de la direction que prendra le travail, même si peu d'efforts peuvent être nécessaires de votre part.</p>
+        </section>
+        <section>
+          <h2>Mais encore...</h2>
+          <p>Vous l'avez bien compris. Ca tourne pas très rond sur ce site. En effet. Ce site a été créé dans le seul but d'héberger des <em>designs humoristiques</em> centrés sur la notion du <em>travail</em>. Le domaine racine, « travaillerai.je », pose la question la plus importante et, d'une manière plus ou moins comique, vous fournit la réponse.</p>
+          <blockquote>Si vous ne l'avez pas remarqué, vous pouvez cliquer sur la boule de billard qui tourne.</blockquote>
+          <p>Il existe également quelques sous-domaines à ce stade : quand, pourquoi, comment. Chacun de ces sites héberge des réponses aléatoires a ces questions fort pertinentes.</p>
+          <p>Le contenu de ce site est ouvert à tous pour modification. Pourvu que vous ayez des qualités a faire valoir en Web Design et que vous connaissiez ce logo <span class="gh-inline hvr-bounce-in"><a href="https://github.com/AlfredJKwack/travaillerai.je" title="GitHub"><svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg></a></span> je serai ravi d'examiner et d'accepter votre <a href="https://github.com/AlfredJKwack/travaillerai.je/pulls" title="PR sur Github" class="hvr-underline-from-right">pull request &#128077;</a>.</p>
+        </section>
       </article>
-      <article>
-        <h2>Mais encore...</h2>
-        <p>Vous l'avez bien compris. Ca tourne pas très rond sur ce site. En effet. Ce site a été créé dans le seul but d'héberger des <em>designs humoristiques</em> centrés sur la notion du <em>travail</em>. Le domaine racine, « travaillerai.je », pose la question la plus importante et, d'une manière plus ou moins comique, vous fournit la réponse.</p>
-        <blockquote>Si vous ne l'avez pas remarqué, vous pouvez cliquer sur la boule de billard qui tourne.</blockquote>
-        <p>Il existe également quelques sous-domaines à ce stade : quand, pourquoi, comment. Chacun de ces sites héberge des réponses aléatoires a ces questions fort pertinentes.</p>
-        <p>Le contenu de ce site est ouvert à tous pour modification. Pourvu que vous ayez des qualités a faire valoir en Web Design et que vous connaissiez ce logo <span class="gh-inline hvr-bounce-in"><a href="https://github.com/AlfredJKwack/travaillerai.je" title="GitHub"><svg alt="GitHub logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50"><path fill-rule="evenodd" clip-rule="evenodd" fill="#181616" d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg></a></span> je serai ravi d'examiner et d'accepter votre <a href="https://github.com/AlfredJKwack/travaillerai.je/pulls" title="PR sur Github" class="hvr-underline-from-right">pull request &#128077;</a>.</p>
-      </article>      
     </div>
-    <div class="footer">
+    <section class="footer">
       <p><span>Notre politique de <em>cookies</em>: y'a pas de cookies.</span> &mdash; <span>Nos <em>droits d'auteur</em>: soyez sympa, c'est du fait main.</span></p>
-    </div>
+    </section>
   </div>
 
 </body>
