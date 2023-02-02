@@ -44,10 +44,10 @@
 
       document.querySelector('.menu-inner').addEventListener('click', (e) => {
         menuExpanded = !menuExpanded;
-      });      
+      });
 
       function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
-        return changeInValue * (-Math.pow(2, -10 * currentIteration / totalIterations) + 1) + startValue;
+        return (currentIteration == totalIterations) ? startValue + changeInValue : changeInValue * (-Math.pow(2, -10 * currentIteration / totalIterations) + 1) + startValue;
       }
 
       var hoverZone = 150;
@@ -78,7 +78,9 @@
         }
 
         curveX = easeOutExpo(xitteration, curveX, targetX-curveX, 100);
-        curveY = easeOutExpo(yitteration, curveY, y-curveY, 100);
+		    curveY = easeOutExpo(yitteration, curveY, y-curveY, 100);
+        curveX.toFixed(); /* to deal with Safari and it's SVG implementation but not quite right... */
+        curveY.toFixed(); /* to deal with Safari and it's SVG implementation */
 
         var anchorDistance = 200;
         var curviness = anchorDistance - 40;
